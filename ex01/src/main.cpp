@@ -12,7 +12,7 @@
 
 #include "Span.hpp"
 
-void ownTest()
+void ownTestRandom()
 {
     Span span(10000);
     
@@ -25,15 +25,28 @@ void ownTest()
     std::cout << span.shortestSpan() << std::endl;
 }
 
-void ownTestTwo()
+void ownTestList()
 {
     Span span(12);
-    std::vector<int> list;
+    std::list<int> list;
 
     list.push_back(1);
     list.push_back(3);
     list.push_back(5);
-    span.addRange<std::vector<int> >(list.begin(), list.end());
+    span.addRange<std::list<int> >(list.begin(), list.end());
+    std::cout << span.longestSpan() << std::endl;
+    std::cout << span.shortestSpan() << std::endl;
+}
+
+void ownTestVector()
+{
+    Span span(12);
+    std::vector<int> vec;
+
+    vec.push_back(7);
+    vec.push_back(13);
+    vec.push_back(3);
+    span.addRange<std::vector<int> >(vec.begin(), vec.end());
     std::cout << span.longestSpan() << std::endl;
     std::cout << span.shortestSpan() << std::endl;
 }
@@ -55,12 +68,14 @@ int main()
 {
     try
     {
-        std::cout << "------------- SUBJECT TEST ------------- "<< std::endl;
+        std::cout << "------------- SUBJECT TEST -------------"<< std::endl;
         subjectTest();
-        std::cout << "------------- OWN TEST -------------" << std::endl;
-        ownTest();
-        std::cout << "------------- OWN TEST TWO -------------" << std::endl;
-        ownTestTwo();
+        std::cout << "------------- OWN TEST RANDOM -------------" << std::endl;
+        ownTestRandom();
+        std::cout << "------------- OWN TEST VECTOR -------------" << std::endl;
+        ownTestVector();
+        std::cout << "------------- OWN TEST LIST -------------" << std::endl;
+        ownTestList();
     }
     catch (const std::exception &e)
     {

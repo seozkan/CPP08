@@ -11,24 +11,87 @@
 /* ************************************************************************** */
 
 #include "easyfind.hpp"
-#include <vector>
+#include <iostream>
 
 int main()
 {
-    std::vector<int> numbers;
-    numbers.push_back(10);
-    numbers.push_back(1);
-    numbers.push_back(17);
-    numbers.push_back(18);
-    numbers.push_back(17);
-    try
-    {
-        easyfind(numbers, 17);
-        easyfind(numbers, 3);
+	std::vector<int> vec;
+	vec.push_back(10);
+	vec.push_back(20);
+	vec.push_back(30);
+	vec.push_back(40);
+	vec.push_back(50);
+
+	std::cout << "Original vector :";
+	for (unsigned long i = 0; i < vec.size(); i++)
+	    std::cout << " " << vec[i];
+	std::cout << std::endl;
+
+	int search = 30;
+ 
+	std::cout << CYAN << "********* Test with existing value *********" << RESET << std::endl;
+	int position;
+	try {
+		position = easyfind(vec, search);
+		std::cout << GREEN << "Value " << search << " is at position " << position << RESET << std::endl; 
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << RED << e.what() << RESET << std::endl;
+	}
+
+
+	std::cout << std::endl;
+	search = 0;
+	std::cout << CYAN << "********* Test with unexisting value *********" << RESET << std::endl;
+	try {
+		position = easyfind(vec, search);
+		std::cout << GREEN << "Value " << search << " is at position " << position << RESET << std::endl; 
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << RED << e.what() << RESET << std::endl;
+	}
+	std::cout << std::endl;
+
+	std::list<int> myList;
+
+	myList.push_back(0);
+	myList.push_back(1);
+	myList.push_back(2);
+	myList.push_back(3);
+
+    std::list<int>::iterator it;
+	std::cout << "Original list : ";
+    for (it = myList.begin(); it != myList.end(); ++it) {
+        std::cout << *it << " ";
     }
-    catch (const std::exception &e)
-    {
-        std::cout << e.what() << '\n';
-    }
-    return 0;
+    std::cout << std::endl;
+
+	std::cout << CYAN << "********* Test with existing value *********" << RESET << std::endl;
+	try {
+		position = easyfind(myList, search);
+		std::cout << GREEN << "Value " << search << " is at position " << position << RESET << std::endl; 
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << RED << e.what() << RESET << std::endl;
+	}
+
+
+	std::cout << std::endl;
+	search = -42;
+	std::cout << CYAN << "********* Test with unexisting value *********" << RESET << std::endl;
+	try {
+		position = easyfind(myList, search);
+		std::cout << GREEN << "Value " << search << " is at position " << position << RESET << std::endl; 
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << RED << e.what() << RESET << std::endl;
+	}
+	std::cout << std::endl;
+
+
+	return 0;
 }

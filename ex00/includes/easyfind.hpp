@@ -10,18 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <algorithm>
+#pragma once
 
-template <typename T> void easyfind(T type, int x)
+#include <algorithm>
+#include <iostream>
+#include <vector>
+#include <list>
+
+# define RESET   "\033[0m"
+# define CYAN    "\033[36m"
+# define GREEN   "\033[32m"
+# define RED  "\033[31m"
+
+
+template <typename T> size_t easyfind(const T& content, int value)
 {
-    typename T::iterator itr;
-    itr = std::find(type.begin(), type.end(), x);
-    if (itr != type.end())
-    {
-        std::cout << "Element" << x;
-        std::cout << " found in index " << itr - type.begin() << std::endl;
-    }
-    else
-        throw std::runtime_error("Element not found!");
+	typename T::const_iterator it = std::find(content.begin(), content.end(), value);
+	if ( it == content.end())
+		throw std::runtime_error("Error: Value not found");
+	return std::distance(content.begin(), it);
 }
